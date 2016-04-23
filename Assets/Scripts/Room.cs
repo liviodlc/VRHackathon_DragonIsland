@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Room {
 
-	private class Exit
+	public class Exit
 	{
 		public Direction d;
 		public Room r;

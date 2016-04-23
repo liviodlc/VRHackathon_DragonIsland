@@ -6,6 +6,9 @@ public class Main : MonoBehaviour {
 	Player player;
 	Room currentRoom;
 
+	public GameObject ExitPrefab;
+	public float ExitDistance = 6f;
+
 	// Use this for initialization
 	void Start () {
 		player = new Player();
@@ -26,11 +29,17 @@ public class Main : MonoBehaviour {
 			//clear current room
 		}
 		//init current room
+		currentRoom = newRoom;
 		renderExits();
 	}
 
 	private void renderExits()
 	{
+		foreach(Room.Exit exit in currentRoom.exits)
+		{
+			GameObject door = Instantiate(ExitPrefab);
+			
+		}
 
 	}
 }
