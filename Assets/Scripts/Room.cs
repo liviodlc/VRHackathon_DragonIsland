@@ -1,15 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Room : MonoBehaviour {
+public class Room {
 
-	// Use this for initialization
-	void Start () {
-	
+	private class Exit
+	{
+		public Direction d;
+		public Room r;
+
+		public Exit(Direction dir, Room room)
+		{
+			d = dir;
+			r = room;
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public ArrayList exits;
+
+	public Room()
+	{
+		exits = new ArrayList();
+	}
+
+	public void setExit(Direction dir, Room room)
+	{
+		exits.Add(new Exit(dir, room));
 	}
 }

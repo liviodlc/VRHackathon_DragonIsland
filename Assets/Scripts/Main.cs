@@ -3,13 +3,34 @@ using System.Collections;
 
 public class Main : MonoBehaviour {
 
+	Player player;
+	Room currentRoom;
+
 	// Use this for initialization
 	void Start () {
-
+		player = new Player();
+		Room firstRoom = new Room();
+		Content.initContent(player, currentRoom);
+		setRoom(firstRoom);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void setRoom(Room newRoom)
+	{
+		if(currentRoom != null)
+		{
+			//clear current room
+		}
+		//init current room
+		renderExits();
+	}
+
+	private void renderExits()
+	{
+
 	}
 }
