@@ -13,8 +13,7 @@ public class CheckSphere : MonoBehaviour {
 			main.selectedItem = myItem;
 	}
 
-	public void onCommand()
-	{
-		Debug.Log ("I clicked sphere");
+	public void onCommand() {
+		transform.position = new Vector3(-0.49f, 0.57f, 0.11f);
 	}
 }
