@@ -9,7 +9,7 @@ public class Content
 	public static void initContent (Player player, Room startingRoom)
 	{
 		Room r1 = startingRoom;
-		Ball ball = new Ball ();
+		//Ball ball = new Ball ();
 
 		Room r2 = new Room ();
 		Ball b2 = new Ball ();
@@ -107,7 +107,7 @@ public class Content
 		r1.setExit (Direction.West, r1);
 		//r1.setExit (Direction.South, r);
 		r1.setExit (Direction.East, r3);
-		r2.addItem (b2);
+		//r2.addItem (b2);
 
 		//Room3
 		r3.setExit (Direction.North, r10);
