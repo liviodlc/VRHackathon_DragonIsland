@@ -12,6 +12,8 @@ public class ExitToRoom : MonoBehaviour {
 		GetComponent<Renderer>().material.color = state ? Color.green : Color.white;
 		if (state)
 			main.selectedRoom = myRoom;
+		else if (main.selectedRoom == myRoom)
+			main.selectedRoom = null;
 	}
 
 	public void onMove()
