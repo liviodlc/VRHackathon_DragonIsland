@@ -9,6 +9,8 @@ public class Main : MonoBehaviour
 	public Room selectedRoom;
 	public CheckSphere selectedBall;
 	public CheckSphere holdingBall;
+	public CheckSphere selectedChest;
+	public GameObject dragonPrefab;
 	ArrayList roomStuff;
 
 	public GameObject ExitPrefab;
@@ -58,8 +60,16 @@ public class Main : MonoBehaviour
 			black.darken(true);
 			foreach (GameObject obj in roomStuff)
 			{
-				Destroy(obj);
+				if (holdingBall != null && obj == holdingBall.gameObject)
+				{
+
+				}else {
+					Destroy(obj);
+				}
 			}
+			roomStuff = new ArrayList();
+			if (holdingBall)
+				roomStuff.Add(holdingBall);
 			yield return new WaitForSeconds(transitionTime);
 			black.darken(false);
 		}
@@ -67,6 +77,7 @@ public class Main : MonoBehaviour
 		currentRoom = newRoom;
 		renderExits();
 		renderItems();
+		renderDragons();
 	}
 
 	private void renderExits()
@@ -108,6 +119,22 @@ public class Main : MonoBehaviour
 				obj = Instantiate(BallPrefab);
 				CheckSphere cs = obj.GetComponent<CheckSphere>();
 				cs.myItem = item;
+				cs.main = this;
+				roomStuff.Add(obj);
+			}
+		}
+	}
+
+	private void renderDragons()
+	{
+		foreach (Dragon d in currentRoom.dragons)
+		{
+			GameObject obj;
+			if (d is Dragon)
+			{
+				obj = Instantiate(dragonPrefab);
+				DragonScript cs = obj.GetComponent<DragonScript>();
+				cs.myDragon = d;
 				cs.main = this;
 				roomStuff.Add(obj);
 			}

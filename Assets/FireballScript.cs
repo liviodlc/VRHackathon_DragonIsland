@@ -17,5 +17,9 @@ public class FireballScript : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 		Destroy(gameObject);
+		if(collision.gameObject.GetComponent<DragonScript>()!=null)
+		{
+			Destroy(collision.gameObject);
+		}
 	}
 }

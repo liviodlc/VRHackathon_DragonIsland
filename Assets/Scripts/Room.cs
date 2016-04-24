@@ -17,11 +17,13 @@ public class Room {
 
 	public ArrayList exits;
 	public ArrayList items;
+	public ArrayList dragons;
 
 	public Room()
 	{
 		exits = new ArrayList();
 		items = new ArrayList();
+		dragons = new ArrayList();
 	}
 
 	public void setExit(Direction dir, Room room)
@@ -32,5 +34,10 @@ public class Room {
 	public void addItem(Item i)
 	{
 		items.Add(i);
+	}
+
+	public void addDragon(Dragon d)
+	{
+		dragons.Add(d);
 	}
 }
