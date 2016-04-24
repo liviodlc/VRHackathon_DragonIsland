@@ -7,6 +7,7 @@ public class CheckSphere : MonoBehaviour {
 	public Item myItem;
 	private Rigidbody rb;
 	private bool pickedUp = false;
+	public AudioClip audio;
 
 	void Start() 
 	{
@@ -42,6 +43,7 @@ public class CheckSphere : MonoBehaviour {
 	{
 		if (pickedUp)
 		{
+			AudioSource.PlayClipAtPoint(audio, transform.position);
 			rb.isKinematic = false;
 			transform.parent = null;
 			rb.velocity = main.getDirection() * 10;
