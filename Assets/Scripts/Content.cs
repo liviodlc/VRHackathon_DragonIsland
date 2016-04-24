@@ -69,10 +69,19 @@ public class Content
 		Room r50 = new Room ();
 
 		Dragon d1 = new Dragon ();
+		Dragon d2 = new Dragon();
+		Dragon d3 = new Dragon();
+		Dragon d4 = new Dragon();
 		Chest c1 = new Chest ();
+		Chest c2 = new Chest();
+		Chest c3 = new Chest();
+		Chest c4 = new Chest();
+		Chest c5 = new Chest();
+		Chest c6 = new Chest();
 
 
-	
+
+
 
 
 		//egg locations
@@ -84,16 +93,16 @@ public class Content
 
 
 		r6.addDragon (d1);
-		r10.addDragon (d1);
-		r20.addDragon (d1);
-		r31.addDragon (d1);
+		r10.addDragon (d2);
+		r20.addDragon (d3);
+		r31.addDragon (d4);
 
 		r9.addItem (c1);
-		r12.addItem (c1);
-		r1.addItem (c1);
-		r33.addItem (c1);
-		r29.addItem (c1);
-		r48.addItem (c1);
+		r12.addItem (c2);
+		r1.addItem (c3);
+		r33.addItem (c4);
+		r29.addItem (c5);
+		r48.addItem (c6);
 
 		//-----Column 1
 		//Room 1
