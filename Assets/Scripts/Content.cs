@@ -73,16 +73,34 @@ public class Content
 
 
 	
+
+
+		//egg locations
+		r2.addItem (ball);
+		r16.addItem (ball);
+		r20.addItem (ball);
+		r38.addItem (ball);
+
+
+
+		r6.addDragon (d1);
+		r10.addDragon (d1);
+		r20.addDragon (d1);
+		r31.addDragon (d1);
+
+		r9.addItem (c1);
+		r12.addItem (c1);
+		r1.addItem (c1);
+		r33.addItem (c1);
+		r29.addItem (c1);
+		r48.addItem (c1);
+
 		//-----Column 1
 		//Room 1
 		//r1.setExit (Direction.North, r8);
 		//r1.setExit (Direction.West, r);
 		//r1.setExit (Direction.South, r);
 		r1.setExit (Direction.East, r2);
-
-		r1.addItem (ball);
-		r1.addDragon (d1);
-		r1.addItem (c1);
 
 		//Room2
 		//r1.setExit (Direction.North, r8);
