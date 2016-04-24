@@ -78,12 +78,12 @@ namespace AWSSDK.Examples
 			}
 		}
 
-		public Button CreateQueue;
+/*		public Button CreateQueue;
 		public Button SendMessage;
 		public Button RetrieveMessage;
 		public Button DeleteQueue;
 		public InputField Message;
-
+*/
 		//changeThis
 		private string queueUrl = "https://sqs.us-east-1.amazonaws.com/742947975125/DragonQueue/?Action=SetQueueAttributes&Attribute.Name=ReceiveMessageWaitTimeSeconds&Attribute.Value=20";
 
@@ -91,10 +91,10 @@ namespace AWSSDK.Examples
 		void Start()
 		{
 			UnityInitializer.AttachToGameObject(this.gameObject);
-			CreateQueue.onClick.AddListener(CreateQueueListener);
+			/*CreateQueue.onClick.AddListener(CreateQueueListener);
 			SendMessage.onClick.AddListener(SendMessageListener);
 			RetrieveMessage.onClick.AddListener(RetrieveMessageListener);
-			DeleteQueue.onClick.AddListener(DeleteQueueListener);
+			DeleteQueue.onClick.AddListener(DeleteQueueListener);*/
 
 
 			StartCoroutine(RepeatRetrieveMessage(0.1F));
@@ -143,7 +143,7 @@ namespace AWSSDK.Examples
 
 			if (!string.IsNullOrEmpty(queueUrl))
 			{
-				var message = Message.text;
+				var message = "game";
 				if (string.IsNullOrEmpty(message))
 				{
 					Debug.Log("No Message to send");
@@ -191,7 +191,10 @@ namespace AWSSDK.Examples
 								//Process the message
 								if (m.Body.StartsWith("client"))
 								{
-
+									if(m.Body.Contains("move"))
+									{
+										Debug.Log("yoyoyoy");
+									}
 								}
 
 								//Delete the message
