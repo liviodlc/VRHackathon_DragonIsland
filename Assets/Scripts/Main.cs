@@ -1,35 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Main : MonoBehaviour {
+public class Main : MonoBehaviour
+{
 
 	Player player;
 	Room currentRoom;
 	public Room selectedRoom;
+	public Item selectedItem;
 	ArrayList roomStuff;
 
 	public GameObject ExitPrefab;
+	public GameObject BallPrefab;
 	public BlackScreen black;
 	public float transitionTime = 1f;
 	public float ExitDistance = 6f;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		roomStuff = new ArrayList();
 		player = new Player();
 		Room firstRoom = new Room();
 		Content.initContent(player, firstRoom);
 		setRoom(firstRoom);
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-		
+	void Update()
+	{
+
 	}
 
 	public void setRoom(Room newRoom)
 	{
-		if(newRoom!=null)
+		if (newRoom != null)
 			StartCoroutine(_setRoom(newRoom));
 	}
 	public IEnumerator _setRoom(Room newRoom)
@@ -48,15 +53,16 @@ public class Main : MonoBehaviour {
 		//init current room
 		currentRoom = newRoom;
 		renderExits();
+		renderItems();
 	}
 
 	private void renderExits()
 	{
-		foreach(Room.Exit exit in currentRoom.exits)
+		foreach (Room.Exit exit in currentRoom.exits)
 		{
 			GameObject door = Instantiate(ExitPrefab);
 			//door.transform.position = new Vector3(0, 0, 0);
-			switch(exit.d)
+			switch (exit.d)
 			{
 				case Direction.North:
 					door.transform.position += new Vector3(0, 0, ExitDistance);
@@ -78,6 +84,20 @@ public class Main : MonoBehaviour {
 			doorComp.main = this;
 			roomStuff.Add(door);
 		}
-
+	}
+	private void renderItems()
+	{
+		foreach (Item item in currentRoom.items)
+		{
+			GameObject obj;
+			if (item is Ball)
+			{
+				obj = Instantiate(BallPrefab);
+				CheckSphere cs = obj.GetComponent<CheckSphere>();
+				cs.myItem = item;
+				cs.main = this;
+				roomStuff.Add(obj);
+			}
+		}
 	}
 }

@@ -4,14 +4,16 @@ using System.Collections;
 public class CheckSphere : MonoBehaviour {
 
 	public Main main;
-//	public Room myRoom;
+	public Item myItem;
 
 	public void OnHighlight(bool state)
 	{
 		GetComponent<Renderer>().material.color = state ? Color.green : Color.black;
+		if (state)
+			main.selectedItem = myItem;
 	}
 
-	public void onMove()
+	public void onCommand()
 	{
 		Debug.Log ("I clicked sphere");
 	}
