@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player //Kyseen  {
-	private Room currentRoom;
+public class Player  {
+//	private Room currentRoom;
 	private int health;
-	private Item items;
-	public Item currentSelection;
+//	private Item items;
+//	public Item currentSelection;
+
 	public Player() {
 		health = 10;
 	}
