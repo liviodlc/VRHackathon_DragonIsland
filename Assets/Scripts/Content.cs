@@ -95,7 +95,7 @@ public class Content
 
 
 
-		r6.addDragon (d1);
+		r3.addDragon (d1);
 		r10.addDragon (d2);
 		r20.addDragon (d3);
 		r31.addDragon (d4);
