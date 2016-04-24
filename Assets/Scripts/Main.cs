@@ -24,7 +24,7 @@ public class Main : MonoBehaviour {
 	
 	}
 
-	void setRoom(Room newRoom)
+	public void setRoom(Room newRoom)
 	{
 		if(currentRoom != null)
 		{
@@ -62,7 +62,9 @@ public class Main : MonoBehaviour {
 					door.transform.Rotate(new Vector3(0, -90f, 0));
 					break;
 			}
-			door.GetComponent<ExitToRoom>().myRoom = exit.r;
+			ExitToRoom doorComp = door.GetComponent<ExitToRoom>();
+			doorComp.myRoom = exit.r;
+			doorComp.main = this;
 			roomStuff.Add(door);
 		}
 
