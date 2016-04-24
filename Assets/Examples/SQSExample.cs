@@ -191,12 +191,20 @@ namespace AWSSDK.Examples
 								Debug.Log(@"Mesage = " + m.Body);
 
 								//Process the message
-								if (m.Body.StartsWith("client"))
+								if(m.Body.Contains("move") || m.Body.Contains("forward"))
 								{
-									if(m.Body.Contains("move"))
-									{
-										main.setRoom(main.selectedRoom);
-									}
+									main.setRoom(main.selectedRoom);
+								}else if (m.Body.Contains("grab"))
+								{
+									main.selectedBall.onCommand();
+								}
+								else if (m.Body.Contains("throw"))
+								{
+									main.holdingBall.onThrow();
+								}
+								else if (m.Body.Contains("attack"))
+								{
+									main.pewPew();
 								}
 
 								//Delete the message
