@@ -4,12 +4,12 @@ using System.Collections;
 public class Main : MonoBehaviour
 {
 
-	Player player;
+	public Player player;
 	Room currentRoom;
 	public Room selectedRoom;
 	public CheckSphere selectedBall;
+	public ChestInteraction selectedChest;
 	public CheckSphere holdingBall;
-	public CheckSphere selectedChest;
 	public GameObject dragonPrefab;
 	ArrayList roomStuff;
 
@@ -114,13 +114,13 @@ public class Main : MonoBehaviour
 		foreach (Item item in currentRoom.items)
 		{
 			GameObject obj;
-			if (item is Ball)
-			{
-				obj = Instantiate(BallPrefab);
-				CheckSphere cs = obj.GetComponent<CheckSphere>();
+			if (item is Ball) {
+				obj = Instantiate (BallPrefab);
+				CheckSphere cs = obj.GetComponent<CheckSphere> ();
 				cs.myItem = item;
 				cs.main = this;
-				roomStuff.Add(obj);
+				roomStuff.Add (obj);
+			} else if (item is Chest) {
 			}
 		}
 	}

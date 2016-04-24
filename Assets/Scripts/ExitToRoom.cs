@@ -18,8 +18,7 @@ public class ExitToRoom : MonoBehaviour {
 
 	public void onMove()
 	{
-		int rand = Random.Range (0, 6);
-		main.setRoom(myRoom);
 		AudioSource.PlayClipAtPoint(audio, transform.position);
+		main.setRoom(myRoom);
 	}
 }
