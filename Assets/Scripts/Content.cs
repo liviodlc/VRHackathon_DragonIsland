@@ -68,6 +68,8 @@ public class Content
 		Room r49 = new Room ();
 		Room r50 = new Room ();
 
+		Dragon d1 = new Dragon();
+		Chest c1 = new Chest();
 
 
 	
@@ -79,6 +81,8 @@ public class Content
 		r1.setExit (Direction.East, r2);
 
 		r1.addItem (ball);
+		r1.addDragon(d1);
+		r1.addItem (c1);
 
 		//Room2
 		//r1.setExit (Direction.North, r8);

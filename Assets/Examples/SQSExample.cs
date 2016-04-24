@@ -196,7 +196,10 @@ namespace AWSSDK.Examples
 									main.setRoom(main.selectedRoom);
 								}else if (m.Body.Contains("grab"))
 								{
-									main.selectedBall.onCommand();
+									if (main.selectedBall)
+										main.selectedBall.onCommand();
+									else if (main.selectedChest)
+										Debug.Log("open chest");
 								}
 								else if (m.Body.Contains("throw"))
 								{
