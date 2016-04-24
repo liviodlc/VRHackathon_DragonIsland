@@ -29,7 +29,8 @@ public class Main : MonoBehaviour {
 
 	public void setRoom(Room newRoom)
 	{
-		StartCoroutine(_setRoom(newRoom));
+		if(newRoom!=null)
+			StartCoroutine(_setRoom(newRoom));
 	}
 	public IEnumerator _setRoom(Room newRoom)
 	{

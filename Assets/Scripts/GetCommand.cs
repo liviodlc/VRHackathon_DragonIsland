@@ -7,7 +7,7 @@ class GetCommand : Command
 {
 	public GetCommand()
 	{
-		
+		 
 	}
 
 	public override void runCommand()

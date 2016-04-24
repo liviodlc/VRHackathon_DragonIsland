@@ -195,7 +195,7 @@ namespace AWSSDK.Examples
 								{
 									if(m.Body.Contains("move"))
 									{
-										Debug.Log("yoyoyoy");
+										main.setRoom(main.selectedRoom);
 									}
 								}
 
