@@ -104,9 +104,9 @@ public class Content
 
 		//Room2
 		//r1.setExit (Direction.North, r8);
-		r1.setExit (Direction.West, r1);
+		r2.setExit (Direction.West, r1);
 		//r1.setExit (Direction.South, r);
-		r1.setExit (Direction.East, r3);
+		r2.setExit (Direction.East, r3);
 		//r2.addItem (b2);
 
 		//Room3
