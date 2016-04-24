@@ -5,7 +5,7 @@ public class ExitToRoom : MonoBehaviour {
 
 	public Main main;
 	public Room myRoom;
-	public AudioSource audio;
+	public AudioClip audio;
 
 	public void OnHighlight(bool state)
 	{
@@ -18,7 +18,7 @@ public class ExitToRoom : MonoBehaviour {
 
 	public void onMove()
 	{
-		main.setRoom(myRoom);
 		AudioSource.PlayClipAtPoint(audio, transform.position);
+		main.setRoom(myRoom);
 	}
 }

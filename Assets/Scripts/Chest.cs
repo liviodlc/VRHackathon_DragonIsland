@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Chest : MonoBehaviour {
+public class Chest : Item {
 	public Random rand = new Random();
 	private int assignment;
 	private Main main;
 
 	public Chest() {
-		assignment = (int) Random.Range (2);
+		assignment = (int) Random.Range(0, 2);
 	}
 
 	public void HPValue() {

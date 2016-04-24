@@ -18,13 +18,14 @@ public class Content
 		Room r4 = new Room ();
 		Room r5 = new Room ();
 
-
+		Chest c1 = new Chest ();
 
 	
 
 		//Room 1
 		r1.setExit (Direction.East, r2);
 		r1.addItem (ball);
+		r1.addItem (c1);
 
 		//#room2
 		r2.setExit (Direction.East, r3);

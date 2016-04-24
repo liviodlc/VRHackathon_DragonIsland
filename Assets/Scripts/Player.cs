@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player  {
 //	private Room currentRoom;
-	private int health;
+	public int health;
 //	private Item items;
 //	public Item currentSelection;
 

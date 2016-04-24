@@ -5,6 +5,7 @@ public class FireballScript : MonoBehaviour {
 	public AudioClip audio;
 	// Use this for initialization
 	void Start () {
+		AudioClip
 		AudioSource.PlayClipAtPoint(audio, transform.position);
 
 	}
