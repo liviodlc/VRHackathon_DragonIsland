@@ -8,6 +8,8 @@ public class Main : MonoBehaviour {
 	ArrayList roomStuff;
 
 	public GameObject ExitPrefab;
+	public BlackScreen black;
+	public float transitionTime = 1f;
 	public float ExitDistance = 6f;
 
 	// Use this for initialization
@@ -16,23 +18,26 @@ public class Main : MonoBehaviour {
 		player = new Player();
 		Room firstRoom = new Room();
 		Content.initContent(player, firstRoom);
-		setRoom(firstRoom);
+		StartCoroutine(setRoom(firstRoom));
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
-	public void setRoom(Room newRoom)
+	public IEnumerator setRoom(Room newRoom)
 	{
 		if(currentRoom != null)
 		{
 			//clear current room
-			foreach(GameObject obj in roomStuff)
+			black.darken(true);
+			foreach (GameObject obj in roomStuff)
 			{
 				Destroy(obj);
 			}
+			yield return new WaitForSeconds(transitionTime);
+			black.darken(false);
 		}
 		//init current room
 		currentRoom = newRoom;
