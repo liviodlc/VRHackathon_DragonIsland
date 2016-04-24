@@ -12,7 +12,10 @@ public class Content
 		//Ball ball = new Ball ();
 
 		Room r2 = new Room ();
-		Ball b2 = new Ball ();
+		Ball b1 = new Ball ();
+		Ball b2 = new Ball();
+		Ball b3 = new Ball();
+		Ball b4 = new Ball();
 
 		Room r3 = new Room ();
 		Room r4 = new Room ();
@@ -85,10 +88,10 @@ public class Content
 
 
 		//egg locations
-		r2.addItem (ball);
-		r16.addItem (ball);
-		r20.addItem (ball);
-		r38.addItem (ball);
+		r2.addItem (b1);
+		r16.addItem (b2);
+		r20.addItem (b3);
+		r38.addItem (b4);
 
 
 
