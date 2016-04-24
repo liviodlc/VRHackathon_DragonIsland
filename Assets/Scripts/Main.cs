@@ -1,51 +1,69 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Main : MonoBehaviour {
+public class Main : MonoBehaviour
+{
 
 	Player player;
 	Room currentRoom;
+	public Room selectedRoom;
+	public Item selectedItem;
 	ArrayList roomStuff;
 
 	public GameObject ExitPrefab;
+	public GameObject BallPrefab;
+	public BlackScreen black;
+	public GameObject head;
+	public float transitionTime = 1f;
 	public float ExitDistance = 6f;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		roomStuff = new ArrayList();
 		player = new Player();
 		Room firstRoom = new Room();
 		Content.initContent(player, firstRoom);
 		setRoom(firstRoom);
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-	
+	void Update()
+	{
+
 	}
 
-	void setRoom(Room newRoom)
+	public void setRoom(Room newRoom)
 	{
-		if(currentRoom != null)
+		if (newRoom != null)
+			StartCoroutine(_setRoom(newRoom));
+	}
+	public IEnumerator _setRoom(Room newRoom)
+	{
+		if (currentRoom != null)
 		{
 			//clear current room
-			foreach(GameObject obj in roomStuff)
+			black.darken(true);
+			foreach (GameObject obj in roomStuff)
 			{
 				Destroy(obj);
 			}
+			yield return new WaitForSeconds(transitionTime);
+			black.darken(false);
 		}
 		//init current room
 		currentRoom = newRoom;
 		renderExits();
+		renderItems();
 	}
 
 	private void renderExits()
 	{
-		foreach(Room.Exit exit in currentRoom.exits)
+		foreach (Room.Exit exit in currentRoom.exits)
 		{
 			GameObject door = Instantiate(ExitPrefab);
 			//door.transform.position = new Vector3(0, 0, 0);
-			switch(exit.d)
+			switch (exit.d)
 			{
 				case Direction.North:
 					door.transform.position += new Vector3(0, 0, ExitDistance);
@@ -62,9 +80,25 @@ public class Main : MonoBehaviour {
 					door.transform.Rotate(new Vector3(0, -90f, 0));
 					break;
 			}
-			door.GetComponent<ExitToRoom>().myRoom = exit.r;
+			ExitToRoom doorComp = door.GetComponent<ExitToRoom>();
+			doorComp.myRoom = exit.r;
+			doorComp.main = this;
 			roomStuff.Add(door);
 		}
-
+	}
+	private void renderItems()
+	{
+		foreach (Item item in currentRoom.items)
+		{
+			GameObject obj;
+			if (item is Ball)
+			{
+				obj = Instantiate(BallPrefab);
+				CheckSphere cs = obj.GetComponent<CheckSphere>();
+				cs.myItem = item;
+				cs.main = this;
+				roomStuff.Add(obj);
+			}
+		}
 	}
 }

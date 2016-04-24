@@ -11,9 +11,13 @@ public class Content
 		Room r1 = startingRoom;
 
 		Room r2 = new Room();
-		r1.setExit(Direction.East, r1);
+		Ball ball = new Ball();
+		r1.setExit(Direction.East, r2);
+		r1.addItem(ball);
 
 		Room r3 = new Room();
+		Ball b2 = new Ball();
 		r2.setExit(Direction.South, r3);
+		r2.addItem(b2);
 	}
 }

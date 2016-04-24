@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Command : MonoBehaviour {
+public class Ball : Item
+{
 
 	// Use this for initialization
 	void Start () {
