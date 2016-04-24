@@ -5,9 +5,7 @@ public class CheckSphere : MonoBehaviour {
 
 	public Main main;
 	public Item myItem;
-
-
-	public Rigidbody rb;
+	private Rigidbody rb;
 
 	void Start() 
 	{
@@ -23,11 +21,13 @@ public class CheckSphere : MonoBehaviour {
 	public void onCommand() {
 		transform.parent = main.head.transform;
 		transform.localPosition = new Vector3(0.23f, -0.37f, 0.41f);
-//		rb.AddForce (0, 200, 200, ForceMode.Impulse);
-		rb.velocity = new Vector3(0, 50, 50);
+		//		rb.AddForce (0, 200, 200, ForceMode.Impulse);
+	}
 
-
-
+	public void onThrow()
+	{
+		transform.parent = null;
+		rb.velocity = (transform.position - main.head.transform.position) * 5;
 	}
 
 

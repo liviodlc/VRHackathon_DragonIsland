@@ -191,9 +191,9 @@ namespace AWSSDK.Examples
 								Debug.Log(@"Mesage = " + m.Body);
 
 								//Process the message
-								if (m.Body.StartsWith("client"))
+								if (m.Body.StartsWith("client") || m.Body.Contains("forward"))
 								{
-									if(m.Body.Contains("move"))
+									if(m.Body.Contains("move") || m.Body.Contains("forward"))
 									{
 										main.setRoom(main.selectedRoom);
 									}
