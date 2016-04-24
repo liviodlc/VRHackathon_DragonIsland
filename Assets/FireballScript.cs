@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FireballScript : MonoBehaviour {
 	public AudioClip audio;
+	public AudioClip audioDragon;
 	// Use this for initialization
 	void Start () {
 		AudioSource.PlayClipAtPoint(audio, transform.position);
@@ -19,6 +20,7 @@ public class FireballScript : MonoBehaviour {
 		Destroy(gameObject);
 		if(collision.gameObject.GetComponent<DragonScript>()!=null)
 		{
+			AudioSource.PlayClipAtPoint(audioDragon, transform.position);
 			Destroy(collision.gameObject);
 		}
 	}
