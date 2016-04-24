@@ -78,12 +78,14 @@ namespace AWSSDK.Examples
 			}
 		}
 
-/*		public Button CreateQueue;
-		public Button SendMessage;
-		public Button RetrieveMessage;
-		public Button DeleteQueue;
-		public InputField Message;
-*/
+		/*		public Button CreateQueue;
+				public Button SendMessage;
+				public Button RetrieveMessage;
+				public Button DeleteQueue;
+				public InputField Message;
+		*/
+		public Main main;
+
 		//changeThis
 		private string queueUrl = "https://sqs.us-east-1.amazonaws.com/742947975125/DragonQueue/?Action=SetQueueAttributes&Attribute.Name=ReceiveMessageWaitTimeSeconds&Attribute.Value=20";
 
@@ -193,7 +195,7 @@ namespace AWSSDK.Examples
 								{
 									if(m.Body.Contains("move"))
 									{
-										Debug.Log("yoyoyoy");
+										main.setRoom(main.selectedRoom);
 									}
 								}
 

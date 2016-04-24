@@ -9,6 +9,8 @@ public class ExitToRoom : MonoBehaviour {
 	public void OnHighlight(bool state)
 	{
 		GetComponent<Renderer>().material.color = state ? Color.green : Color.white;
+		if (state)
+			main.selectedRoom = myRoom;
 	}
 
 	public void onMove()
