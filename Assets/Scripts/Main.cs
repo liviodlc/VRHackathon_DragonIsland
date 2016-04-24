@@ -13,6 +13,7 @@ public class Main : MonoBehaviour
 	public GameObject ExitPrefab;
 	public GameObject BallPrefab;
 	public BlackScreen black;
+	public GameObject head;
 	public float transitionTime = 1f;
 	public float ExitDistance = 6f;
 

@@ -14,6 +14,7 @@ public class CheckSphere : MonoBehaviour {
 	}
 
 	public void onCommand() {
-		transform.position = new Vector3(-0.49f, 0.57f, 0.11f);
+		transform.parent = main.head.transform;
+		transform.localPosition = new Vector3(0.23f, -0.37f, 0.41f);
 	}
 }
