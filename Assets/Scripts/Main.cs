@@ -7,13 +7,17 @@ public class Main : MonoBehaviour
 	Player player;
 	Room currentRoom;
 	public Room selectedRoom;
-	public Item selectedItem;
+	public CheckSphere selectedBall;
+	public CheckSphere holdingBall;
 	ArrayList roomStuff;
 
 	public GameObject ExitPrefab;
 	public GameObject BallPrefab;
+	public GameObject FireballPrefab;
+	public float fireballSpeed = 10;
 	public BlackScreen black;
 	public GameObject head;
+	public GameObject point;
 	public float transitionTime = 1f;
 	public float ExitDistance = 6f;
 
@@ -30,7 +34,15 @@ public class Main : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			pewPew();
+		}
+	}
 
+	public Vector3 getDirection()
+	{
+		return point.transform.position - head.transform.position;
 	}
 
 	public void setRoom(Room newRoom)
@@ -100,5 +112,12 @@ public class Main : MonoBehaviour
 				roomStuff.Add(obj);
 			}
 		}
+	}
+
+	public void pewPew()
+	{
+		GameObject fb = Instantiate(FireballPrefab);
+		fb.GetComponent<Rigidbody>().velocity = getDirection() * fireballSpeed;
+		fb.transform.position = new Vector3(0, 1.5f, 0);
 	}
 }

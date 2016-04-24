@@ -24,14 +24,18 @@ public class CheckSphere : MonoBehaviour {
 	{
 		GetComponent<Renderer>().material.color = state ? Color.green : Color.black;
 		if (state)
-			main.selectedItem = myItem;
+			main.selectedBall = this;
+		else if (main.selectedBall == this)
+			main.selectedBall = null;
 	}
 
 	public void onCommand() {
 		transform.parent = main.head.transform;
 		transform.localPosition = new Vector3(0.23f, -0.37f, 0.41f);
+		GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 //		rb.AddForce (0, 200, 200, ForceMode.Impulse);
 		pickedUp = true;
+		main.holdingBall = this;
 	}
 
 	public void onThrow()
@@ -40,7 +44,9 @@ public class CheckSphere : MonoBehaviour {
 		{
 			rb.isKinematic = false;
 			transform.parent = null;
-			rb.velocity = (transform.position - main.head.transform.position) * 10;
+			rb.velocity = main.getDirection() * 10;
+			pickedUp = false;
+			main.holdingBall = null;
 		}
 	}
 
