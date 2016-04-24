@@ -5,6 +5,7 @@ public class Main : MonoBehaviour {
 
 	Player player;
 	Room currentRoom;
+	public Room selectedRoom;
 	ArrayList roomStuff;
 
 	public GameObject ExitPrefab;
@@ -18,7 +19,7 @@ public class Main : MonoBehaviour {
 		player = new Player();
 		Room firstRoom = new Room();
 		Content.initContent(player, firstRoom);
-		StartCoroutine(setRoom(firstRoom));
+		setRoom(firstRoom);
 	}
 	
 	// Update is called once per frame
@@ -26,9 +27,13 @@ public class Main : MonoBehaviour {
 		
 	}
 
-	public IEnumerator setRoom(Room newRoom)
+	public void setRoom(Room newRoom)
 	{
-		if(currentRoom != null)
+		StartCoroutine(_setRoom(newRoom));
+	}
+	public IEnumerator _setRoom(Room newRoom)
+	{
+		if (currentRoom != null)
 		{
 			//clear current room
 			black.darken(true);

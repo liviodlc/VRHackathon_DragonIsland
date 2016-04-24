@@ -637,7 +637,7 @@ public class Cardboard : MonoBehaviour {
   }
 
   void OnApplicationFocus(bool focus) {
-    device.OnFocus(focus);
+		device.OnFocus(focus);
   }
 
   void OnLevelWasLoaded(int level) {
