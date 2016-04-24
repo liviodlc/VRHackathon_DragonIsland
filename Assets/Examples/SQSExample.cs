@@ -24,162 +24,221 @@ using UnityEngine.UI;
 
 namespace AWSSDK.Examples
 {
-    public class SQSExample : MonoBehaviour
-    {
-        //identity pool id for cognito credentials
-        public string IdentityPoolId = "";
+	public class SQSExample : MonoBehaviour
+	{
 
-        public string CognitoIdentityRegion = RegionEndpoint.USEast1.SystemName;
 
-        private RegionEndpoint _CognitoIdentityRegion
-        {
-            get { return RegionEndpoint.GetBySystemName(CognitoIdentityRegion); }
-        }
 
-        public string SQSRegion = RegionEndpoint.USEast1.SystemName;
+		//identity pool id for cognito credentials
 
-        private RegionEndpoint _SQSRegion
-        {
-            get { return RegionEndpoint.GetBySystemName(SQSRegion); }
-        }
+		//changeThis
+		private string IdentityPoolId = "us-east-1:4049ef3c-5935-46a9-a274-9342e7bad671";
 
-        //name of the queue you want to create
-        public string QueueName = "AWS_SQS_EXAMPLE_QUEUE";
+		public string CognitoIdentityRegion = RegionEndpoint.USEast1.SystemName;
 
-        private AWSCredentials _credentials;
+		private RegionEndpoint _CognitoIdentityRegion
+		{
+			get { return RegionEndpoint.GetBySystemName(CognitoIdentityRegion); }
+		}
 
-        private AWSCredentials Credentials
-        {
-            get
-            {
-                if (_credentials == null)
-                    _credentials = new CognitoAWSCredentials(IdentityPoolId, _CognitoIdentityRegion);
-                return _credentials;
-            }
-        }
+		public string SQSRegion = RegionEndpoint.USEast1.SystemName;
 
-        private IAmazonSQS _sqsClient;
+		private RegionEndpoint _SQSRegion
+		{
+			get { return RegionEndpoint.GetBySystemName(SQSRegion); }
+		}
 
-        private IAmazonSQS SqsClient
-        {
-            get
-            {
-                if (_sqsClient == null)
-                    _sqsClient = new AmazonSQSClient(Credentials, _SQSRegion);
-                return _sqsClient;
-            }
-        }
 
-        public Button CreateQueue;
-        public Button SendMessage;
-        public Button RetrieveMessage;
-        public Button DeleteQueue;
-        public InputField Message;
+		//name of the queue you want to create
 
-        private string queueUrl;
+		//changeThis
+		private string QueueName = "DragonQueue";
 
-        // Use this for initialization
-        void Start()
-        {
-            UnityInitializer.AttachToGameObject(this.gameObject);
-            CreateQueue.onClick.AddListener(CreateQueueListener);
-            SendMessage.onClick.AddListener(SendMessageListener);
-            RetrieveMessage.onClick.AddListener(RetrieveMessageListener);
-            DeleteQueue.onClick.AddListener(DeleteQueueListener);
-        }
+		private AWSCredentials _credentials;
 
-        private void CreateQueueListener()
-        {
-            SqsClient.CreateQueueAsync(QueueName, (result) =>
-            {
-                if (result.Exception == null)
-                {
-                    Debug.Log(@"Queue Created");
-                    queueUrl = result.Response.QueueUrl;
-                }
-                else
-                {
-                    Debug.LogException(result.Exception);
-                }
-            });
-        }
+		private AWSCredentials Credentials
+		{
+			get
+			{
+				if (_credentials == null)
+					_credentials = new CognitoAWSCredentials(IdentityPoolId, _CognitoIdentityRegion);
+				return _credentials;
+			}
+		}
 
-        private void DeleteQueueListener()
-        {
-            if (!string.IsNullOrEmpty(queueUrl))
-            {
-                SqsClient.DeleteQueueAsync(queueUrl, (result) =>
-                {
-                    if (result.Exception == null)
-                    {
-                        Debug.Log(@"Queue Deleted");
-                    }
-                    else
-                    {
-                        Debug.LogException(result.Exception);
-                    }
-                });
-            }
-            else
-            {
-                Debug.Log(@"Queue Url is empty, make sure that the queue is created first");
-            }
-        }
+		private IAmazonSQS _sqsClient;
 
-        private void SendMessageListener()
-        {
-            if (!string.IsNullOrEmpty(queueUrl))
-            {
-                var message = Message.text;
-                if (string.IsNullOrEmpty(message))
-                {
-                    Debug.Log("No Message to send");
-                    return;
-                }
+		private IAmazonSQS SqsClient
+		{
+			get
+			{
+				if (_sqsClient == null)
+					_sqsClient = new AmazonSQSClient(Credentials, _SQSRegion);
+				return _sqsClient;
+			}
+		}
 
-                SqsClient.SendMessageAsync(queueUrl, message, (result) =>
-                {
-                    if (result.Exception == null)
-                    {
-                        Debug.Log("Message Sent");
-                    }
-                    else
-                    {
-                        Debug.LogException(result.Exception);
-                    }
-                });
-            }
-            else
-            {
-                Debug.Log(@"Queue Url is empty, make sure that the queue is created first");
-            }
-        }
+		public Button CreateQueue;
+		public Button SendMessage;
+		public Button RetrieveMessage;
+		public Button DeleteQueue;
+		public InputField Message;
 
-        private void RetrieveMessageListener()
-        {
-            if (!string.IsNullOrEmpty(queueUrl))
-            {
-                SqsClient.ReceiveMessageAsync(queueUrl, (result) =>
-                {
-                    if (result.Exception == null)
-                    {
-                        var messages = result.Response.Messages;
-                        messages.ForEach(m =>
-                        {
-                            Debug.Log(@"Message Id  = " + m.MessageId);
-                            Debug.Log(@"Mesage = " + m.Body);
-                        });
-                    }
-                    else
-                    {
-                        Debug.LogException(result.Exception);
-                    }
-                });
-            }
-            else
-            {
-                Debug.Log(@"Queue Url is empty, make sure that the queue is created first");
-            }
-        }
-    }
+		//changeThis
+		private string queueUrl = "https://sqs.us-east-1.amazonaws.com/742947975125/DragonQueue/?Action=SetQueueAttributes&Attribute.Name=ReceiveMessageWaitTimeSeconds&Attribute.Value=20";
+
+		// Use this for initialization
+		void Start()
+		{
+			UnityInitializer.AttachToGameObject(this.gameObject);
+			CreateQueue.onClick.AddListener(CreateQueueListener);
+			SendMessage.onClick.AddListener(SendMessageListener);
+			RetrieveMessage.onClick.AddListener(RetrieveMessageListener);
+			DeleteQueue.onClick.AddListener(DeleteQueueListener);
+
+
+			StartCoroutine(RepeatRetrieveMessage(0.1F));
+		}
+
+		private void CreateQueueListener()
+		{
+			//            SqsClient.CreateQueueAsync(QueueName, (result) =>
+			//            {
+			//                if (result.Exception == null)
+			//                {
+			//                    Debug.Log(@"Queue Created");
+			//                    queueUrl = result.Response.QueueUrl;
+			//                }
+			//                else
+			//                {
+			//                    Debug.LogException(result.Exception);
+			//                }
+			//            });
+		}
+
+		private void DeleteQueueListener()
+		{
+			//            if (!string.IsNullOrEmpty(queueUrl))
+			//            {
+			//                SqsClient.DeleteQueueAsync(queueUrl, (result) =>
+			//                {
+			//                    if (result.Exception == null)
+			//                    {
+			//                       Debug.Log(@"Queue Deleted");
+			//                    }
+			//                    else
+			//                    {
+			//                        Debug.LogException(result.Exception);
+			//                    }
+			//                });
+			//            }
+			//            else
+			//            {
+			//                Debug.Log(@"Queue Url is empty, make sure that the queue is created first");
+			//            }
+		}
+
+		private void SendMessageListener()
+		{
+
+			if (!string.IsNullOrEmpty(queueUrl))
+			{
+				var message = Message.text;
+				if (string.IsNullOrEmpty(message))
+				{
+					Debug.Log("No Message to send");
+					return;
+				}
+
+				SqsClient.SendMessageAsync(queueUrl, message, (result) =>
+				{
+					if (result.Exception == null)
+					{
+						Debug.Log("Message Sent");
+					}
+					else
+					{
+						Debug.LogException(result.Exception);
+					}
+				});
+			}
+			else
+			{
+				Debug.Log(@"Queue Url is empty, make sure that the queue is created first");
+			}
+		}
+
+
+
+		IEnumerator RepeatRetrieveMessage(float waitTime)
+		{
+			bool checkSQS = true;
+			while (checkSQS)
+			{
+				yield return new WaitForSeconds(waitTime);
+
+				if (!string.IsNullOrEmpty(queueUrl))
+				{
+					SqsClient.ReceiveMessageAsync(queueUrl, (result) => {
+						if (result.Exception == null)
+						{
+							//Read the message
+							var messages = result.Response.Messages;
+							messages.ForEach(m => {
+								Debug.Log(@"Message Id  = " + m.MessageId);
+								Debug.Log(@"Mesage = " + m.Body);
+
+								//Process the message
+								if (m.Body.StartsWith("client"))
+								{
+
+								}
+
+								//Delete the message
+								var delRequest = new Amazon.SQS.Model.DeleteMessageRequest
+								{
+									QueueUrl = queueUrl,
+									ReceiptHandle = m.ReceiptHandle
+
+								};
+
+								SqsClient.DeleteMessageAsync(delRequest, (delResult) => {
+									if (delResult.Exception == null)
+									{
+									}
+									else {
+									}
+								});
+
+
+
+
+							});
+
+						}
+						else {
+							Debug.LogException(result.Exception);
+						}
+
+
+					});
+				}
+				else {
+					Debug.Log(@"Queue Url is empty, make sure that the queue is created first");
+				}
+
+				//Debug.Log (".");
+			}
+		}
+
+
+		private void RetrieveMessageListener()
+		{
+			StartCoroutine(RepeatRetrieveMessage(0.1F));
+
+
+		}
+
+	}
+
 }
