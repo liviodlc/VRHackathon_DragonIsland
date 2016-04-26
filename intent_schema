@@ -1,0 +1,40 @@
+{
+  "intents": [
+    {
+      "intent": "MyColorIsIntent",
+      "slots": [
+        {
+          "name": "Color",
+          "type": "LIST_OF_COLORS"
+        }
+      ]
+    },
+    {
+      "intent": "WhatsMyColorIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "MoveForwardIntent"
+    },
+    {
+      "intent": "MoveBackwardIntent"
+    },
+    {
+      "intent": "GrabIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent" : "ThrowIntent"
+    },
+    {
+      "intent" : "AttackIntent"
+    }
+  ]
+}
