@@ -1,0 +1,53 @@
+"Forward"
+
+--- Lambda Request --- (JSON)
+
+{
+  "session": {
+    "sessionId": "SessionId.6e05aac4-eaca-4dc1-9151-4fb1b80246b7",
+    "application": {
+      "applicationId": "amzn1.echo-sdk-ams.app.29a14abb-9d79-4f40-9987-dbbdd4faf3f0"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.AFP3ZWPOS2BGJR7OWJZ3DHPKMOMNWY4AY66FUR7ILBWANIHQN73QGZF3OMLIRFUPTAMJBTPPRE5NYSTJLDBQ52GJOGHDEDOTZBOTWRDJATX5OWBLGZCUKGUJPFBVAXQ5XIT73JJHRTGY6N5DP45LYLJE3HAJFEXYJ6XHLJIKLE4YW4KLICQ2NP6R3274X2RQXVTGIV4CYZOC7NQ"
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.9bdf220a-fc30-4d51-8efa-8257c71436c8",
+    "timestamp": "2016-04-26T06:28:13Z",
+    "intent": {
+      "name": "MoveForwardIntent",
+      "slots": {}
+    },
+    "locale": "en-US"
+  },
+  "version": "1.0"
+}
+
+--- Lambda Response --- (JSON)
+
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "type": "PlainText",
+      "text": "Up Up and Away!"
+    },
+    "card": {
+      "content": "SessionSpeechlet - Up Up and Away!",
+      "title": "SessionSpeechlet - MoveForwardIntent",
+      "type": "Simple"
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "type": "PlainText",
+        "text": " "
+      }
+    },
+    "shouldEndSession": false
+  },
+  "sessionAttributes": {}
+}
